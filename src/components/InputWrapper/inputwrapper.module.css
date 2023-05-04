@@ -1,12 +1,12 @@
 .input-wrapper > input {
     width: calc(100% - 10px);
     height: 40px;
+    padding-left: 18px;
+    font-size: 18px;
+    font-weight: 400;
     border-radius: 60px;
     border-color: rgba(213, 140, 81, 1);
-}
-
-.input-wrapper > input::placeholder {
-    padding-left: 18px;
+    color: black;
 }
 
 .error-message {
