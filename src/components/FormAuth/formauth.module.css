@@ -4,17 +4,17 @@
     background-color: white;
 }
 
-.auth-wrapper {
+.register-wrapper {
     text-align: right;
     margin: 7px 20px 0 0;
 }
 
-.auth-wrapper > span {
+.register-wrapper > span {
     cursor: pointer;
     color: rgba(213, 140, 81, 1);
 }
 
-.auth-wrapper > span:hover {
+.register-wrapper > span:hover {
     text-decoration: underline;
 }
 
@@ -73,7 +73,21 @@
     content: url('../../assets/checked.png');
 }
 
-.button-register {
-    margin: 10px auto 0 auto;
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-failed-message {
+    font-size: 8px;
+    font-weight: 300;
+    text-align: center;
+    color: red;
+}
+
+.button-login {
+    margin: 0 auto;
     background-color: rgba(213, 140, 81, 1);
 }
