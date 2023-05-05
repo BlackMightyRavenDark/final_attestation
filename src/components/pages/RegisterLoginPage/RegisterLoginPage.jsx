@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import FormAuth from "../../FormAuth/FormAuth";
 import FormRegister from "../../FormRegister/FormRegister";
@@ -6,10 +7,12 @@ import FormRegister from "../../FormRegister/FormRegister";
 import styles from "./regsterloginpage.module.css";
 
 function RegisterLoginPage() {
+    const regView = useSelector(state => state.registrationForm.registerView);
+
     return (
         <div className={styles["bkg"]}>
-            <FormAuth />
-            <FormRegister />
+            { regView && <FormRegister /> }
+            { !regView && <FormAuth /> }
         </div>
     )
 }

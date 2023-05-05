@@ -1,14 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
+import { switchView } from "../../store/reducers/registration";
 
 import InputWrapper from "../InputWrapper/InputWrapper";
 
 import styles from "./formregister.module.css";
 
 function FormRegister() {
+    const dispatch = useDispatch();
+
     return (
         <form className={styles["form"]}>
             <div className={styles["auth-wrapper"]}>
-                <span>
+                <span onClick={() => dispatch(switchView())}>
                     Авторизоваться
                 </span>
             </div>
