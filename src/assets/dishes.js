@@ -1,9 +1,9 @@
-import image1 from './assets/card1.png';
-import image2 from './assets/card2.png';
-import image3 from './assets/card3.png';
-import image4 from './assets/card4.png';
+import image1 from './card1.png';
+import image2 from './card2.png';
+import image3 from './card3.png';
+import image4 from './card4.png';
 
-const productList = [
+const dishList = [
     {
         id: 0,
         imageUrl: image1,
@@ -70,4 +70,4 @@ const productList = [
     }
 ]
 
-export default productList;
+export default dishList;

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import productList from "../../products";
+import dishList from "../../assets/dishes";
 
 function getBuyedIdsFromLocalStorage() {
     const shoppingCartString = localStorage.getItem("shoppingCart");
@@ -21,7 +21,7 @@ function getTotalPriceBuyed() {
 
     const idList = getBuyedIdsFromLocalStorage();
 
-    return idList ? productList.reduce((sum, item) => {
+    return idList ? dishList.reduce((sum, item) => {
         return isPresent(item.id.toString(), idList) ? sum += item.cost : sum;
     }, 0) : 0;
 }
@@ -43,7 +43,7 @@ export const productSlice = createSlice({
 
             state.buyedIds.push(action.payload.id.toString());
             
-            state.totalPrice = productList.reduce((sum, item) => {
+            state.totalPrice = dishList.reduce((sum, item) => {
                 return isPresent(item.id.toString()) ? sum += item.cost : sum;
             }, 0);
 
@@ -59,7 +59,7 @@ export const productSlice = createSlice({
 
             state.buyedIds = state.buyedIds.filter(element => action.payload.id.toString() !== element);
             if (state.buyedIds.length > 0) {
-                state.totalPrice = productList.reduce((sum, item) => {
+                state.totalPrice = dishList.reduce((sum, item) => {
                     return isPresent(item.id.toString()) ? sum += item.cost : sum;
                 }, 0);
 
