@@ -3,6 +3,7 @@
     justify-content: space-between;
     padding-top: 60px;
     margin: 0 50px;
+    max-width: 1440px;
 }
 
 .data-wrapper {
@@ -22,8 +23,15 @@
 }
 
 .button-logout {
+    cursor: pointer;
     padding: 10px 75px;
     background: none;
     border: 1px solid rgba(213, 140, 81, 1);
     color: rgba(213, 140, 81, 1);
+}
+
+@media screen and (max-device-width: 950px) {
+    .header {
+        min-width: 500px;
+    }
 }

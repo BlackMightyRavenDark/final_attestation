@@ -14,6 +14,7 @@ function DishInfoPage() {
         <div className={styles["background"]}>
             <DishInfoHeader />
 
+            <div className={styles["megawrapper"]}>
             <div className={styles["dish-container"]}>
                 <img src={dishList[id].imageUrl} alt="image" className={styles["dish-image"]}/>
 
@@ -43,6 +44,8 @@ function DishInfoPage() {
                         </button>
                     </div>
                 </div>
+            </div>
+
             </div>
         </div>
     )
