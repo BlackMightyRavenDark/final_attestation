@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import MainPage from "./components/pages/MainPage/MainPage";
 import ShoppingCartPage from "./components/pages/ShoppingCartPage/ShoppingCartPage";
 import RegisterLoginPage from "./components/pages/RegisterLoginPage/RegisterLoginPage";
+import DishInfoPage from "./components/DishInfoPage/DishInfoPage";
 
 import "./main.css";
 
@@ -26,6 +27,12 @@ root.render(
             <Route path="/module_react" element={
               <>
                 <MainPage />
+              </>
+            } />
+
+            <Route path="/module_react/dishinfo/:id" element={
+              <>
+                <DishInfoPage />
               </>
             } />
 

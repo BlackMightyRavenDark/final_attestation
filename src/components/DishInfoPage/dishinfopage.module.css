@@ -1,0 +1,58 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../../assets/dishInfoBkg.png");
+}
+
+.dish-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 120px 0 120px;
+}
+
+.dish-image {
+    width: 500px;
+    height: 500px;
+}
+
+.dish-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    gap: 50px;
+}
+
+.dish-info-wrapper > p:nth-child(1) {
+    font-size: 30px;
+    font-weight: 500;
+    color: rgba(213, 140, 81, 1);
+}
+
+.dish-info-wrapper > p:nth-child(2) {
+    height: 170px;
+    font-size: 14px;
+    font-weight: 400;
+    overflow-y: auto;
+}
+
+.cost-container {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.cost-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cost-wrapper > span:nth-child(1) {
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.button-cart {
+    padding: 12px 60px;
+}

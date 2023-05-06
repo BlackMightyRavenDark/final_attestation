@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 60px;
+    margin: 0 50px;
+}
+
+.data-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cart-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.text-wrapper > p:nth-child(1) {
+    text-align: right;
+}
+
+.button-logout {
+    padding: 10px 75px;
+    background: none;
+    border: 1px solid rgba(213, 140, 81, 1);
+    color: rgba(213, 140, 81, 1);
+}
