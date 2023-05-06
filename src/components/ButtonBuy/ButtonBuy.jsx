@@ -20,7 +20,7 @@ function ButtonBuy({onClickHandler, isActive}) {
             alt="buy"
             onMouseOver={onMouseOverHandler}
             onMouseOut={onMouseOutHandler}
-            onClick={() => onClickHandler()}
+            onClick={(e) => { e.stopPropagation(); onClickHandler(); }}
         />
     )
 }

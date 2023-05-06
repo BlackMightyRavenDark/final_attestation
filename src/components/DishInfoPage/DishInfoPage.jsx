@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import DishInfoHeader from "../DishInfoHeader/DishInfoHeader";
 
@@ -9,6 +9,7 @@ import styles from "./dishinfopage.module.css";
 
 function DishInfoPage() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     return (
         <div className={styles["background"]}>
@@ -16,7 +17,7 @@ function DishInfoPage() {
 
             <div className={styles["megawrapper"]}>
                 <div className={styles["dish-container"]}>
-                    <img src={dishList[id].imageUrl} alt="image" className={styles["dish-image"]}/>
+                    <img src={dishList[id].imageUrl} alt="preview" className={styles["dish-image"]}/>
 
                     <div className={styles["dish-info-wrapper"]}>
                         <p>
@@ -39,7 +40,7 @@ function DishInfoPage() {
                                 </span>
                             </div>
 
-                            <button className={styles["button-cart"]}>
+                            <button className={styles["button-cart"]} onClick={() => navigate("/module_react/cart")}>
                                 В корзину
                             </button>
                         </div>

@@ -19,7 +19,7 @@ function ShoppingCartFooter() {
                     </p>
                 </div>
 
-                <button>
+                <button onClick={() => alert("Заказ оформлен!")}>
                     Оформить заказ
                 </button>
             </div>

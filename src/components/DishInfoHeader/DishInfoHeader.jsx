@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import imageBack from "../../assets/back.svg";
+import ButtonBack from "../ButtonBack/ButtonBack";
+
 import imageCart from "../../assets/header_cart.svg";
 
 import styles from "./dishinfoheader.module.css";
@@ -9,10 +11,11 @@ import styles from "./dishinfoheader.module.css";
 function DishInfoHeader() {
     const buyedIds = useSelector(state => state.products.buyedIds);
     const totalPrice = useSelector(state => state.products.totalPrice);
+    const navigate = useNavigate();
 
     return (
         <div className={styles["header"]}>
-            <img src={imageBack} alt="back" />
+            <ButtonBack />
 
             <div className={styles["data-wrapper"]}>
                 <div className={styles["cart-wrapper"]}>
@@ -29,7 +32,7 @@ function DishInfoHeader() {
                     <img src={imageCart} alt="cart" />
                 </div>
 
-                <button className={styles["button-logout"]}>
+                <button className={styles["button-logout"]} onClick={() => navigate("/module_react/reg")}>
                     Выйти
                 </button>
             </div>

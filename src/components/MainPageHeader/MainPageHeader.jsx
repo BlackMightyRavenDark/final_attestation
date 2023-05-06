@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import image from "../../assets/header_cart.svg";
 
@@ -9,6 +10,7 @@ import styles from "./mainpageheader.module.css";
 function MainPageHeader() {
     const buyedIds = useSelector(state => state.products.buyedIds);
     const totalPrice = useSelector(state => state.products.totalPrice);
+    const navigate = useNavigate();
 
     return (
         <header className={styles["header"]}>
@@ -31,7 +33,7 @@ function MainPageHeader() {
                     <img src={image} alt="" className="img" />
                 </Link>
 
-                <button className={styles["button-logout"]}>
+                <button className={styles["button-logout"]} onClick={() => navigate("/module_react/reg")}>
                     Выйти
                 </button>
             </span>

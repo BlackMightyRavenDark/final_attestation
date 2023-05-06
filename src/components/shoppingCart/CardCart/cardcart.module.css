@@ -1,7 +1,12 @@
 .card {
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 260px;
+}
+
+.preview-wrapper:hover > p {
+    color: orange;
 }
 
 .preview-wrapper {

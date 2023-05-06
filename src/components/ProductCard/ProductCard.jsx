@@ -6,10 +6,12 @@ import { addToCart, removeFromCart } from "../../store/reducers/products";
 import ButtonBuy from "../ButtonBuy/ButtonBuy.jsx";
 
 import styles from "./productcard.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Card({id, image, title, description, cost, weight, pcs}) {
     const buyedIds = useSelector(state => state.products.buyedIds);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function getIsBuyed() {
         for (let i = 0; i < buyedIds.length; ++i) {
@@ -29,7 +31,7 @@ function Card({id, image, title, description, cost, weight, pcs}) {
     }
 
     return (
-        <div className={styles["card"]}>
+        <div className={styles["card"]} onClick={() => navigate(`/module_react/dishinfo/${id}`)}>
             <div className={styles["card__content-wrapper"]}>
                 <div className={styles["img"]}>
                     <img src={image} alt="" className={styles["img"]}/>
