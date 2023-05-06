@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import FormAuth from "../../FormAuth/FormAuth";
-import FormRegister from "../../FormRegister/FormRegister";
+import FormAuth from "../../components/FormAuth/FormAuth";
+import FormRegister from "../../components/FormRegister/FormRegister";
 
 import styles from "./regsterloginpage.module.css";
 

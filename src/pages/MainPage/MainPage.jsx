@@ -1,7 +1,7 @@
 import React from "react";
 
-import MainPageHeader from "../../MainPageHeader/MainPageHeader";
-import MainPageCardLst from "../../MainPageCardList/MainPageCardList";
+import MainPageHeader from "../../components/MainPageHeader/MainPageHeader";
+import MainPageCardLst from "../../components/MainPageCardList/MainPageCardList";
 
 function MainPage() {
     return (

@@ -9,9 +9,7 @@ function ShoppingCartHeader() {
     return (
         <div className={styles["header-wrapper"]}>
             <div className="image-wrapper">
-                <Link to="/module_react">
-                    <ButtonBack />
-                </Link>
+                <ButtonBack />
             </div>
 
             <span className={styles["header-title"]}>
