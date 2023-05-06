@@ -17,3 +17,12 @@
     font-size: 31px;
     font-weight: 700;
 }
+
+.button-logout {
+    padding: 12px 75px;
+    font-size: 14px;
+    font-weight: 400;
+    background: none;
+    border: 1px solid rgba(213, 140, 81, 1);
+    color: rgba(213, 140, 81, 1);
+}

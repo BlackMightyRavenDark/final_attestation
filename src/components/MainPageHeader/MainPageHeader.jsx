@@ -16,8 +16,8 @@ function MainPageHeader() {
                 НАША ПРОДУКЦИЯ
             </span>
 
-            <Link to="/module_react/cart">
-                <span className={styles["header__cart-wrapper"]}>
+            <span className={styles["header__cart-wrapper"]}>
+                <Link to="/module_react/cart" className={styles["header__cart-link"]}>
                     <div className={styles["cart__text-wrapper"]}>
                         <p>
                             {buyedIds.length.toString()} товара
@@ -28,9 +28,13 @@ function MainPageHeader() {
                         </p>
                     </div>
 
-                    <img src={image} alt="" className="img"/>
-                </span>
-            </Link>
+                    <img src={image} alt="" className="img" />
+                </Link>
+
+                <button className={styles["button-logout"]}>
+                    Выйти
+                </button>
+            </span>
         </header>
     )
 }

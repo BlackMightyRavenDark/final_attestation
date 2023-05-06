@@ -17,6 +17,10 @@ function ShoppingCartHeader() {
             <span className={styles["header-title"]}>
                 Корзина с выбранными товарами
             </span>
+
+            <button className={styles["button-logout"]}>
+                Выйти
+            </button>
         </div>
     )
 }
