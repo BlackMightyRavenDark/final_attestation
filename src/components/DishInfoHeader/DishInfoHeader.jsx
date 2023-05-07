@@ -9,7 +9,7 @@ import imageCart from "../../assets/header_cart.svg";
 import styles from "./dishinfoheader.module.css";
 
 function DishInfoHeader() {
-    const buyedIds = useSelector(state => state.products.buyedIds);
+    const buyedDishes = useSelector(state => state.products.buyedDishes);
     const totalPrice = useSelector(state => state.products.totalPrice);
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ function DishInfoHeader() {
                 <div className={styles["cart-wrapper"]}>
                     <div className={styles["text-wrapper"]}>
                         <p>
-                            {buyedIds.length.toString()} товара
+                            {buyedDishes.length.toString()} товара
                         </p>
 
                         <p>

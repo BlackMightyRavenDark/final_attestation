@@ -9,13 +9,13 @@ import styles from "./productcard.module.css";
 import { useNavigate } from "react-router-dom";
 
 function Card({id, image, title, description, cost, weight, pcs}) {
-    const buyedIds = useSelector(state => state.products.buyedIds);
+    const buyedDishes = useSelector(state => state.products.buyedDishes);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function getIsBuyed() {
-        for (let i = 0; i < buyedIds.length; ++i) {
-            if (buyedIds[i] === id.toString()) {
+        for (let i = 0; i < buyedDishes.length; ++i) {
+            if (buyedDishes[i].id === id) {
                 return true;
             }
         }
@@ -26,7 +26,7 @@ function Card({id, image, title, description, cost, weight, pcs}) {
         if (getIsBuyed()) {
             dispatch(removeFromCart({id}));
         } else {
-            dispatch(addToCart({id}));
+            dispatch(addToCart({ id, title, cost, image }));
         }
     }
 

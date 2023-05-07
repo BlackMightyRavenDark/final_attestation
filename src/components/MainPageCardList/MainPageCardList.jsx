@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Card from "../ProductCard/ProductCard";
-
-import dishList from "../../assets/dishes";
 
 import styles from "./mainpagecardlist.module.css";
 
 function MainPageCardList() {
+    const [dishList, setDishList] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3001/dishes").then(data => data.json()).then(json => setDishList(json));
+    }, []);
+
     return (
         <div className={styles["card-list"]}>
             {

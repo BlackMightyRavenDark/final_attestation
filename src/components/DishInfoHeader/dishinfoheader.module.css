@@ -32,6 +32,6 @@
 
 @media screen and (max-device-width: 950px) {
     .header {
-        min-width: 500px;
+        min-width: 600px;
     }
 }

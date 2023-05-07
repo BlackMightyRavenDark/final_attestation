@@ -1,52 +1,27 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import DishInfoHeader from "../DishInfoHeader/DishInfoHeader";
-
-import dishList from "../../assets/dishes";
+import DishInfo from "../DishInfo/DishInfo";
 
 import styles from "./dishinfopage.module.css";
 
 function DishInfoPage() {
     const { id } = useParams();
-    const navigate = useNavigate();
+    const [dishInfo, setDishInfo] = useState(null);
+
+    useEffect(() => {
+        try {
+            fetch(`http://localhost:3001/dishes/${id}`).then(data => data.json()).then(json => setDishInfo(json));
+        } catch {
+            setDishInfo(null); //не работает :'(
+        }
+    }, []);
 
     return (
         <div className={styles["background"]}>
             <DishInfoHeader />
-
-            <div className={styles["megawrapper"]}>
-                <div className={styles["dish-container"]}>
-                    <img src={dishList[id].imageUrl} alt="preview" className={styles["dish-image"]}/>
-
-                    <div className={styles["dish-info-wrapper"]}>
-                        <p>
-                            {dishList[id].title}
-                        </p>
-
-                        <p>
-                            {dishList[id].description}
-                        </p>
-
-                        <div className={styles["cost-container"]}>
-                            <div className={styles["cost-wrapper"]}>
-                                <span>
-                                    {dishList[id].cost} ₽
-                                </span>
-
-                                <span>
-                                    {dishList[id].weight && ` / ${dishList[id].weight} г.`}
-                                    {dishList[id].pieces && ` / ${dishList[id].pieces} шт.`}
-                                </span>
-                            </div>
-
-                            <button className={styles["button-cart"]} onClick={() => navigate("/module_react/cart")}>
-                                В корзину
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            { dishInfo !== null && <DishInfo dish={dishInfo} /> }
         </div>
     )
 }

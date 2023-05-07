@@ -8,7 +8,7 @@ import image from "../../assets/header_cart.svg";
 import styles from "./mainpageheader.module.css";
 
 function MainPageHeader() {
-    const buyedIds = useSelector(state => state.products.buyedIds);
+    const buyedDishes = useSelector(state => state.products.buyedDishes);
     const totalPrice = useSelector(state => state.products.totalPrice);
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function MainPageHeader() {
                 <Link to="/module_react/cart" className={styles["header__cart-link"]}>
                     <div className={styles["cart__text-wrapper"]}>
                         <p>
-                            {buyedIds.length.toString()} товара
+                            {buyedDishes.length.toString()} товара
                         </p>
 
                         <p>
