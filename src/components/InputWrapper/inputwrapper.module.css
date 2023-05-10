@@ -10,8 +10,13 @@
 }
 
 .error-message {
+    display: none;
     margin-left: 20px;
     font-size: 8px;
     font-weight: 300;
     color: rgba(255, 11, 11, 1);
+}
+
+.visible {
+    display: block;
 }

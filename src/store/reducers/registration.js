@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const registrationSlice = createSlice({
     name: "registration",
     initialState: {
-        registerView: true
+        registerView: false
     },
     reducers: {
         switchView: (state) => {
