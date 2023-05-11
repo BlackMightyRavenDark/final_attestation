@@ -1,6 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { setLoginedUserName, setRegView } from "../../store/reducers/registration";
 
 import ButtonBack from "../ButtonBack/ButtonBack";
 
@@ -11,7 +13,15 @@ import styles from "./dishinfoheader.module.css";
 function DishInfoHeader() {
     const buyedDishes = useSelector(state => state.products.buyedDishes);
     const totalPrice = useSelector(state => state.products.totalPrice);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    function logout() {
+        dispatch(setLoginedUserName({ userName: "" }));
+        dispatch(setRegView({ regView: false }));
+        navigate("/module_react/reg");
+    }
 
     return (
         <div className={styles["header"]}>
@@ -32,7 +42,7 @@ function DishInfoHeader() {
                     <img src={imageCart} alt="cart" />
                 </div>
 
-                <button className={styles["button-logout"]} onClick={() => navigate("/module_react/reg")}>
+                <button className={styles["button-logout"]} onClick={logout}>
                     Выйти
                 </button>
             </div>

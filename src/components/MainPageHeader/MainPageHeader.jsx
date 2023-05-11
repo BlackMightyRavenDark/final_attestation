@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { setRegView, setLoginedUserName } from "../../store/reducers/registration";
 
 import image from "../../assets/header_cart.svg";
 
@@ -10,7 +12,15 @@ import styles from "./mainpageheader.module.css";
 function MainPageHeader() {
     const buyedDishes = useSelector(state => state.products.buyedDishes);
     const totalPrice = useSelector(state => state.products.totalPrice);
+
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    function logout() {
+        dispatch(setLoginedUserName({ userName: "" }));
+        dispatch(setRegView({ regView: false }));
+        navigate("/module_react/reg");
+    }
 
     return (
         <header className={styles["header"]}>
@@ -33,7 +43,7 @@ function MainPageHeader() {
                     <img src={image} alt="" className="img" />
                 </Link>
 
-                <button className={styles["button-logout"]} onClick={() => navigate("/module_react/reg")}>
+                <button className={styles["button-logout"]} onClick={logout}>
                     Выйти
                 </button>
             </span>

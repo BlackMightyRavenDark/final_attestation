@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { switchView } from "../../store/reducers/registration";
+import { switchView, setLoginedUserName } from "../../store/reducers/registration";
 import { setRegChecked, clearData } from "../../store/reducers/inputs";
 
 import InputWrapper from "../InputWrapper/InputWrapper";
@@ -20,6 +21,7 @@ function FormRegister() {
     const isCheched = useSelector(state => state.inputs.checkedReg);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function validateEmail(email) {
         if (email === null || email === undefined || email === "") {
@@ -78,9 +80,25 @@ function FormRegister() {
         const isPasswordValid = validatePasswword();
         const accepted = validateCheckBox();
         if (isLoginValid && isPasswordValid && accepted) {
-            const response = await fetch("http://localhost:3001/register", { method: "POST" });
-            const j = await response.json();
-            console.log(j);
+            const jsonBody = JSON.stringify({ email: loginValue, password: passwordValue });
+            try {
+                const response = await fetch("http://localhost:3001/register",
+                    { method: "POST", body: jsonBody, headers: { "Content-Type": "application/json" }});
+                if (response.status !== 200 && response.status !== 201) {
+                    alert(`Ошибка ${response.status} ${response.statusText}!`);
+                    return;
+                }
+                const json = await response.json();
+                dispatch(setLoginedUserName({ userName: json.accessToken?.user?.email }));
+                navigate("/module_react");
+            } catch (ex) {
+                const errorMessage =
+                    "Что-то пошло не так, как должно было пойти или пошло не туда или не в ту сторону " +
+                    "или не захотело пойти или не дошло или изначально вообще не пошло или зеленые " +
+                    "человечки высадились на Землю и давай пиф-паф во все стороны, паника, хаос, анархия, " +
+                    "Джон Маклейн облажался, весь мир в огне, сервера падают с ошибкой";
+                alert(`${errorMessage} ${ex}!`);
+            }
         }
     }
 
