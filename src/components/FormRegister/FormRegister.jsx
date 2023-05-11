@@ -21,6 +21,15 @@ function FormRegister() {
 
     const dispatch = useDispatch();
 
+    function validateEmail(email) {
+        if (email === null || email === undefined || email === "") {
+            return false;
+        }
+
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return email.match(pattern);
+    }
+
     function validateLogin() {
         if (loginValue === "") {
             setLoginErrorText("Поле обязательно для заполнения");
@@ -28,6 +37,10 @@ function FormRegister() {
             return false;
         } else if (loginValue.length < 4) {
             setLoginErrorText("Логин не должен быть короче 4-х символов");
+            setLoginErrorTextStyles(["error-message", "visible"]);
+            return false;
+        } else if (!validateEmail(loginValue)) {
+            setLoginErrorText("Введите правильный e-mail");
             setLoginErrorTextStyles(["error-message", "visible"]);
             return false;
         }
