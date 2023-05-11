@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { setLoginedUserName, setRegView } from "../../store/reducers/registration";
 
@@ -28,19 +28,21 @@ function DishInfoHeader() {
             <ButtonBack />
 
             <div className={styles["data-wrapper"]}>
-                <div className={styles["cart-wrapper"]}>
-                    <div className={styles["text-wrapper"]}>
-                        <p>
-                            {buyedDishes.length.toString()} товара
-                        </p>
+                <Link to="/module_react/cart">
+                    <div className={styles["cart-wrapper"]}>
+                        <div className={styles["text-wrapper"]}>
+                            <p>
+                                {buyedDishes.length.toString()} товара
+                            </p>
 
-                        <p>
-                            на сумму {totalPrice} ₽
-                        </p>
+                            <p>
+                                на сумму {totalPrice} ₽
+                            </p>
+                        </div>
+
+                        <img src={imageCart} alt="cart" />
                     </div>
-
-                    <img src={imageCart} alt="cart" />
-                </div>
+                </Link>
 
                 <button className={styles["button-logout"]} onClick={logout}>
                     Выйти
