@@ -4,6 +4,11 @@
       "email": "aaa@bbb.ru",
       "password": "$2a$10$f9GQ08tsTpc2KmNiWx433u4vKY3Spp4HyS7uBo1x8UPLPgm4TpF5u",
       "id": 1
+    },
+    {
+      "email": "aaa2@bbb.ru",
+      "password": "$2a$10$XfOaLrXTrJRRma7bq3PZRerPi1DzzmuLi0PDh6lm4Ai481./1GIcy",
+      "id": 2
     }
   ],
   "dishes": [

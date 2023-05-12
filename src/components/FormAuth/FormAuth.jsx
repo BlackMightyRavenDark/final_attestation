@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { switchView, setLoginedUserName } from "../../store/reducers/registration";
 import { setAuthChecked, clearData } from "../../store/reducers/inputs";
@@ -17,6 +16,7 @@ function FormAuth() {
     const [passwordErrorTextStyles, setPasswordErrorTextStyles] = useState(["error-message"]);
 
     const [loginFailedMessageStyles, setLoginFailedMessageStyles] = useState(["login-failed-message"])
+
     const customErrorTextStyles = loginFailedMessageStyles.reduce((res, style) => {
         return res = `${res} ${styles[style]}`;
     }, "");
@@ -26,7 +26,6 @@ function FormAuth() {
     const isCheched = useSelector(state => state.inputs.checkedAuth);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     function validateEmail(email) {
         if (email === null || email === undefined || email === "") {
@@ -88,15 +87,14 @@ function FormAuth() {
             const jsonBody = JSON.stringify({ email: loginValue, password: passwordValue });
             try {
                 const response = await fetch("http://localhost:3001/login",
-                { method: "POST", body: jsonBody, headers: { "Content-Type": "application/json" } });
-                if (response.status !== 200 && response.status !== 201) {
+                    { method: "POST", body: jsonBody, headers: { "Content-Type": "application/json" } });
+                if (response.status !== 200) {
                     setLoginFailedMessageStyles(["login-failed-message", "visible"]);
                     alert(`Ошибка ${response.status} ${response.statusText}!`);
                     return;
                 }
                 const json = await response.json();
-                dispatch(setLoginedUserName({ userName: json.accessToken?.user?.email }));
-                navigate("/module_react");
+                dispatch(setLoginedUserName({ userName: json.user?.email }));
             } catch (ex) {
                 const errorMessage =
                     "Что-то пошло не так, как должно было пойти или пошло не туда или не в ту сторону " +
@@ -124,15 +122,15 @@ function FormAuth() {
 
                 <div className={styles["fields-container"]}>
                     <InputWrapper
-                        inputType="text"
-                        placeholder="Логин"
+                        inputType="email"
+                        placeholderText="E-mail"
                         errorText={loginErrorText}
                         errorTextStyles={loginErrorTextStyles}
                     />
 
                     <InputWrapper
                         inputType="password"
-                        placeholder="Пароль"
+                        placeholderText="Пароль"
                         errorText={passwordErrorText}
                         errorTextStyles={passwordErrorTextStyles}
                     />

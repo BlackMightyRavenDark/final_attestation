@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { switchView, setLoginedUserName } from "../../store/reducers/registration";
 import { setRegChecked, clearData } from "../../store/reducers/inputs";
@@ -21,7 +20,6 @@ function FormRegister() {
     const isCheched = useSelector(state => state.inputs.checkedReg);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     function validateEmail(email) {
         if (email === null || email === undefined || email === "") {
@@ -89,8 +87,7 @@ function FormRegister() {
                     return;
                 }
                 const json = await response.json();
-                dispatch(setLoginedUserName({ userName: json.accessToken?.user?.email }));
-                navigate("/module_react");
+                dispatch(setLoginedUserName({ userName: json.user?.email }));
             } catch (ex) {
                 const errorMessage =
                     "Что-то пошло не так, как должно было пойти или пошло не туда или не в ту сторону " +
@@ -117,15 +114,15 @@ function FormRegister() {
 
                 <div className={styles["fields-container"]}>
                     <InputWrapper
-                        inputType="text"
-                        placeholder="Логин"
+                        inputType="email"
+                        placeholderText="E-mail"
                         errorText={loginErrorText}
                         errorTextStyles={loginErrorTextStyles}
                     />
 
                     <InputWrapper
                         inputType="password"
-                        placeholder="Пароль"
+                        placeholderText="Пароль"
                         errorText={passwordErrorText}
                         errorTextStyles={passwordErrorTextStyles}
                     />

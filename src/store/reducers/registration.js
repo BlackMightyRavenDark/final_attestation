@@ -4,7 +4,7 @@ export const registrationSlice = createSlice({
     name: "registration",
     initialState: {
         registerView: false,
-        loginedUserName: ""
+        loginedUserName: localStorage.getItem("login")
     },
     reducers: {
         switchView: (state) => {
@@ -14,7 +14,13 @@ export const registrationSlice = createSlice({
             state.registerView = payload.regView;
         },
         setLoginedUserName: (state, { payload }) => {
+            console.log(payload.userName);
             state.loginedUserName = payload.userName;
+            if (state.loginedUserName) {
+                localStorage.setItem("login", state.loginedUserName);
+            } else {
+                localStorage.removeItem("login");
+            }
         }
     }
 });
