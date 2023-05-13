@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { switchView, setLoginedUserName } from "../../store/reducers/registration";
-import { setAuthChecked, clearData } from "../../store/reducers/inputs";
+import { setAuthChecked, clearLoginAndPassword } from "../../store/reducers/inputs";
 
 import InputWrapper from "../InputWrapper/InputWrapper";
 
@@ -95,6 +95,7 @@ function FormAuth() {
                 }
                 const json = await response.json();
                 dispatch(setLoginedUserName({ userName: json.user?.email }));
+                dispatch(clearLoginAndPassword());
             } catch (ex) {
                 const errorMessage =
                     "Что-то пошло не так, как должно было пойти или пошло не туда или не в ту сторону " +
@@ -110,7 +111,7 @@ function FormAuth() {
     return (
         <form className={styles["form"]}>
             <div className={styles["register-wrapper"]}>
-                <span onClick={() => { dispatch(switchView()); dispatch(clearData()); }}>
+                <span onClick={() => dispatch(switchView())}>
                     Зарегистрироваться
                 </span>
             </div>

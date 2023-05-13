@@ -39,10 +39,15 @@ export const productSlice = createSlice({
             } else if (localStorage.getItem("shoppingCart")) {
                 localStorage.removeItem("shoppingCart");
             }
+        },
+        clearShoppingCart: (state) => {
+            state.buyedDishes = [];
+            state.totalPrice = 0;
+            localStorage.removeItem("shoppingCart");
         }
     }
 });
 
-export const { addToCart, removeFromCart } = productSlice.actions;
+export const { addToCart, removeFromCart, clearShoppingCart } = productSlice.actions;
 
 export default productSlice.reducer;

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { setLoginedUserName, setRegView } from "../../store/reducers/registration";
+import { clearLoginAndPassword } from "../../store/reducers/inputs";
+import { clearShoppingCart } from "../../store/reducers/products";
 
 import ButtonBack from "../ButtonBack/ButtonBack";
 
@@ -20,6 +22,8 @@ function DishInfoHeader() {
     function logout() {
         dispatch(setLoginedUserName({ userName: "" }));
         dispatch(setRegView({ regView: false }));
+        dispatch(clearLoginAndPassword());
+        dispatch(clearShoppingCart());
         navigate("/module_react/reg");
     }
 

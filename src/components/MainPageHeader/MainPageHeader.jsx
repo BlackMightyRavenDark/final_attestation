@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { setRegView, setLoginedUserName } from "../../store/reducers/registration";
+import { clearLoginAndPassword } from "../../store/reducers/inputs";
+import { clearShoppingCart } from "../../store/reducers/products";
 
 import image from "../../assets/header_cart.svg";
 
@@ -19,6 +21,8 @@ function MainPageHeader() {
     function logout() {
         dispatch(setLoginedUserName({ userName: "" }));
         dispatch(setRegView({ regView: false }));
+        dispatch(clearLoginAndPassword());
+        dispatch(clearShoppingCart());
         navigate("/module_react/reg");
     }
 

@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { setLoginedUserName, setRegView } from "../../../store/reducers/registration";
+import { clearLoginAndPassword } from "../../../store/reducers/inputs";
+import { clearShoppingCart } from "../../../store/reducers/products";
 
 import ButtonBack from "../../../components/ButtonBack/ButtonBack";
 
@@ -15,6 +17,8 @@ function ShoppingCartHeader() {
     function logout() {
         dispatch(setLoginedUserName({ userName: "" }));
         dispatch(setRegView({ regView: false }));
+        dispatch(clearLoginAndPassword());
+        dispatch(clearShoppingCart());
         navigate("/module_react/reg");
     }
 

@@ -21,12 +21,12 @@ export const inputsSlice = createSlice({
         setRegChecked: (state, { payload }) => {
             state.checkedReg = payload.checked;
         },
-        clearData: (state) => {
+        clearLoginAndPassword: (state) => {
             state.loginValue = state.passwordValue = "";
         }
     }
 });
 
-export const { setLogin, setPassword, setAuthChecked, setRegChecked, clearData } = inputsSlice.actions;
+export const { setLogin, setPassword, setAuthChecked, setRegChecked, clearLoginAndPassword } = inputsSlice.actions;
 
 export default inputsSlice.reducer;
