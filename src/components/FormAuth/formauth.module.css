@@ -70,7 +70,8 @@
 
 .checkbox:checked + .label-checkbox::before {
     position: absolute;
-    content: url('../../assets/checked.png');
+    background-image: url('../../assets/checked.png');
+    background-position: 0 -7px;
 }
 
 .button-wrapper {
