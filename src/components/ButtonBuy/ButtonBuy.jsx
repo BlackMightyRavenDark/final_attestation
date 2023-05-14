@@ -1,27 +1,30 @@
 import React, { useState } from "react";
 
-import imageBuy from "../../assets/buy.svg";
-import imageBuyActive from "../../assets/buyHovered.svg";
+import styles from "./buttonbuy.module.css";
 
-function ButtonBuy({onClickHandler, isActive}) {
-    const [isMouseOver, setIsMouseOver] = useState(false);
+function ButtonBuy({onClickHandler, isBuyed}) {
+    const [isHovered, setIsHovered] = useState(false);
+    const styleList = ["button"];
+    if (isBuyed) styleList.push("buyed");
+    if (isHovered) styleList.push("hovered");
+    const actualStyles = styleList.reduce((res, element) => `${res} ${styles[element]}`, "");
 
     function onMouseOverHandler() {
-        setIsMouseOver(true);
+        setIsHovered(true);
     }
 
     function onMouseOutHandler() {
-        setIsMouseOver(false);
+        setIsHovered(false);
     }
 
     return (
-        <img
-            src={isMouseOver || isActive ? imageBuyActive : imageBuy}
-            alt="buy"
+        <button
+            className={actualStyles}
             onMouseOver={onMouseOverHandler}
             onMouseOut={onMouseOutHandler}
-            onClick={(e) => { e.stopPropagation(); onClickHandler(); }}
-        />
+            onClick={onClickHandler}>
+                <div></div>
+        </button>
     )
 }
 

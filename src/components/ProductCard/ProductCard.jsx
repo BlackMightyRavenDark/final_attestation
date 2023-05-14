@@ -22,7 +22,9 @@ function Card({id, image, title, description, cost, weight, pcs}) {
         return false;
     }
 
-    function toggleBuy() {
+    function btnBuyClickHandler(e) {
+        e.stopPropagation();
+
         if (getIsBuyed()) {
             dispatch(removeFromCart({id}));
         } else {
@@ -60,8 +62,8 @@ function Card({id, image, title, description, cost, weight, pcs}) {
                 </div>
 
                 <ButtonBuy
-                    onClickHandler={toggleBuy}
-                    isActive={getIsBuyed()}
+                    onClickHandler={btnBuyClickHandler}
+                    isBuyed={getIsBuyed()}
                 />
             </div>
         </div>

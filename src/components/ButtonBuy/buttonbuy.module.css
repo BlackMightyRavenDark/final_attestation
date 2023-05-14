@@ -1,0 +1,16 @@
+.button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 15px;
+    background: none;
+    background-image: url("../../assets/buy.svg");
+}
+
+.hovered {
+    background-color: rgba(213, 140, 81, 1);
+}
+
+.buyed {
+    rotate: 45deg;
+}
