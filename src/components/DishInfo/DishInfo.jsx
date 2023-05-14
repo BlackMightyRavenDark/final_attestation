@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addToCart, removeFromCart } from "../../store/reducers/products";
 
+import { getDishIsBuyed } from "../../func";
+
 import styles from "./dishinfo.module.css";
 
 function DishInfo({ dish }) {
@@ -10,12 +12,8 @@ function DishInfo({ dish }) {
 
     const dispatch = useDispatch();
 
-    function getIsBuyed() {
-        return buyedDishes.find(element => element.id === dish.id);
-    }
-
     function onBtnBuyClickHandler() {
-        if (getIsBuyed()) {
+        if (getDishIsBuyed(dish.id, buyedDishes)) {
             dispatch(removeFromCart({ id: dish.id }));
         } else {
             const { id, title, cost, imageUrl } = dish;
@@ -50,7 +48,7 @@ function DishInfo({ dish }) {
                         </div>
 
                         <button className={styles["button-cart"]} onClick={onBtnBuyClickHandler}>
-                            { getIsBuyed() ? "Убрать" : "В корзину" }
+                            { getDishIsBuyed(dish.id, buyedDishes) ? "Убрать" : "В корзину" }
                         </button>
                     </div>
                 </div>

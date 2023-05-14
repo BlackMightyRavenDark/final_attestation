@@ -6,6 +6,8 @@ import { addToCart, removeFromCart } from "../../store/reducers/products";
 
 import ButtonBuy from "../ButtonBuy/ButtonBuy.jsx";
 
+import { getDishIsBuyed } from "../../func";
+
 import styles from "./productcard.module.css";
 
 function Card({id, image, title, description, cost, weight, pcs}) {
@@ -13,20 +15,11 @@ function Card({id, image, title, description, cost, weight, pcs}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function getIsBuyed() {
-        for (let i = 0; i < buyedDishes.length; ++i) {
-            if (buyedDishes[i].id === id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     function btnBuyClickHandler(e) {
         e.stopPropagation();
 
-        if (getIsBuyed()) {
-            dispatch(removeFromCart({id}));
+        if (getDishIsBuyed(id, buyedDishes)) {
+            dispatch(removeFromCart({ id }));
         } else {
             dispatch(addToCart({ id, title, cost, image }));
         }
@@ -63,7 +56,7 @@ function Card({id, image, title, description, cost, weight, pcs}) {
 
                 <ButtonBuy
                     onClickHandler={btnBuyClickHandler}
-                    isBuyed={getIsBuyed()}
+                    isBuyed={getDishIsBuyed(id, buyedDishes)}
                 />
             </div>
         </div>
