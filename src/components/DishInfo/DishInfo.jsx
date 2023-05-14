@@ -1,10 +1,27 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addToCart, removeFromCart } from "../../store/reducers/products";
 
 import styles from "./dishinfo.module.css";
 
 function DishInfo({ dish }) {
-    const navigate = useNavigate();
+    const buyedDishes = useSelector(state => state.products.buyedDishes);
+
+    const dispatch = useDispatch();
+
+    function getIsBuyed() {
+        return buyedDishes.find(element => element.id === dish.id);
+    }
+
+    function onBtnBuyClickHandler() {
+        if (getIsBuyed()) {
+            dispatch(removeFromCart({ id: dish.id }));
+        } else {
+            const { id, title, cost, imageUrl } = dish;
+            dispatch(addToCart({ id, title, cost, image: imageUrl }));
+        }
+    }
 
     return (
         <div className={styles["megawrapper"]}>
@@ -32,8 +49,8 @@ function DishInfo({ dish }) {
                             </span>
                         </div>
 
-                        <button className={styles["button-cart"]} onClick={() => navigate("/module_react/cart")}>
-                            В корзину
+                        <button className={styles["button-cart"]} onClick={onBtnBuyClickHandler}>
+                            { getIsBuyed() ? "Убрать" : "В корзину" }
                         </button>
                     </div>
                 </div>
