@@ -31,7 +31,7 @@ function CardCart({id, imageUrl, title, cost}) {
                     {cost} ₽
                 </span>
 
-                <img src={imageCross} alt="X" onClick={(e) => {e.stopPropagation(); onRemoveHandler(); }} />
+                <img src={imageCross} alt="X" onClick={(e) => { e.stopPropagation(); onRemoveHandler(); }} />
             </div>
         </div>
     )

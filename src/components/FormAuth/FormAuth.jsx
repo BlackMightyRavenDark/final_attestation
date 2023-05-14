@@ -19,9 +19,7 @@ function FormAuth() {
 
     const [loginFailedMessageStyles, setLoginFailedMessageStyles] = useState(["login-failed-message"])
 
-    const customErrorTextStyles = loginFailedMessageStyles.reduce((res, style) => {
-        return res = `${res} ${styles[style]}`;
-    }, "");
+    const customErrorTextStyles = loginFailedMessageStyles.reduce((res, style) => `${res} ${styles[style]}`, "");
 
     const loginValue = useSelector(state => state.inputs.loginValue);
     const passwordValue = useSelector(state => state.inputs.passwordValue);

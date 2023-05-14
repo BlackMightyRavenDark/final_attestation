@@ -53,7 +53,7 @@ function Card({id, image, title, description, cost, weight, pcs}) {
             <div className={styles["card__cost-wrapper"]}>
                 <div className={styles["cost-weight"]}>
                     <span>
-                        {cost} P
+                        {cost} ₽
                     </span>
 
                     <span>
