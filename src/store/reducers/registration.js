@@ -14,7 +14,6 @@ export const registrationSlice = createSlice({
             state.registerView = payload.regView;
         },
         setLoginedUserName: (state, { payload }) => {
-            console.log(payload.userName);
             state.loginedUserName = payload.userName;
             if (state.loginedUserName) {
                 localStorage.setItem("login", state.loginedUserName);

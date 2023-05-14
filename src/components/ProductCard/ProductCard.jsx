@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { addToCart, removeFromCart } from "../../store/reducers/products";
 
 import ButtonBuy from "../ButtonBuy/ButtonBuy.jsx";
 
 import styles from "./productcard.module.css";
-import { useNavigate } from "react-router-dom";
 
 function Card({id, image, title, description, cost, weight, pcs}) {
     const buyedDishes = useSelector(state => state.products.buyedDishes);

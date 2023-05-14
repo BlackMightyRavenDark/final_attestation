@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { switchView, setLoginedUserName } from "../../store/reducers/registration";
-import { setRegChecked, clearLoginAndPassword } from "../../store/reducers/inputs";
+import { setAuthChecked, setRegChecked, clearLoginAndPassword } from "../../store/reducers/inputs";
 
 import InputWrapper from "../InputWrapper/InputWrapper";
+
+import { validateEmail } from "../../func";
 
 import styles from "./formregister.module.css";
 
@@ -17,18 +19,9 @@ function FormRegister() {
 
     const loginValue = useSelector(state => state.inputs.loginValue);
     const passwordValue = useSelector(state => state.inputs.passwordValue);
-    const isCheched = useSelector(state => state.inputs.checkedReg);
+    const isChecked = useSelector(state => state.inputs.checkedReg);
 
     const dispatch = useDispatch();
-
-    function validateEmail(email) {
-        if (email === null || email === undefined || email === "") {
-            return false;
-        }
-
-        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return email.match(pattern);
-    }
 
     function validateLogin() {
         if (loginValue === "") {
@@ -49,7 +42,7 @@ function FormRegister() {
         return true;
     }
 
-    function validatePasswword() {
+    function validatePassword() {
         if (passwordValue === "") {
             setPasswordErrorText("Поле обязательно для заполнения");
             setPasswordErrorTextStyles(["error-message", "visible"]);
@@ -65,17 +58,23 @@ function FormRegister() {
     }
 
     function validateCheckBox() {
-        if (!isCheched) {
+        if (!isChecked) {
             alert("Вы должны поставить галочку");
         }
 
-        return isCheched;
+        return isChecked;
+    }
+
+    function switchForm() {
+        dispatch(clearLoginAndPassword());
+        dispatch(setAuthChecked({ checked: false}));
+        dispatch(switchView());
     }
 
     async function onRegisterClickHandler(e) {
         e.preventDefault();
         const isLoginValid = validateLogin();
-        const isPasswordValid = validatePasswword();
+        const isPasswordValid = validatePassword();
         const accepted = validateCheckBox();
         if (isLoginValid && isPasswordValid && accepted) {
             const jsonBody = JSON.stringify({ email: loginValue, password: passwordValue });
@@ -89,6 +88,7 @@ function FormRegister() {
                 const json = await response.json();
                 dispatch(setLoginedUserName({ userName: json.user?.email }));
                 dispatch(clearLoginAndPassword());
+                dispatch(setRegChecked({ checked: false }));
             } catch (ex) {
                 const errorMessage =
                     "Что-то пошло не так, как должно было пойти или пошло не туда или не в ту сторону " +
@@ -103,7 +103,7 @@ function FormRegister() {
     return (
         <form className={styles["form"]}>
             <div className={styles["auth-wrapper"]}>
-                <span onClick={() => dispatch(switchView())}>
+                <span onClick={switchForm}>
                     Авторизоваться
                 </span>
             </div>

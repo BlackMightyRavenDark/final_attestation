@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import CardCart from "../CardCart/CardCart"
+import CardCart from "../CardCart/CardCart";
 
 import styles from "./shoppingcartlist.module.css";
 

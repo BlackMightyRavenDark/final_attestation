@@ -22,18 +22,14 @@ export const productSlice = createSlice({
         totalPrice: getTotalBuyedPrice()
     },
     reducers: {
-        addToCart: (state, { payload }) => {
-            const { id, title, cost, image } = payload;
-            const dish = { id, title, cost, image };
+        addToCart: (state, { payload: dish }) => {
             state.buyedDishes.push(dish);
-            state.totalPrice += cost;
+            state.totalPrice += dish.cost;
             localStorage.setItem("shoppingCart", JSON.stringify(state.buyedDishes));
         },
         removeFromCart: (state, { payload }) => {
             state.buyedDishes = state.buyedDishes.filter(element => payload.id !== element.id);
-            state.totalPrice = state.buyedDishes.reduce((sum, { cost }) => {
-                return sum += cost;
-            }, 0);
+            state.totalPrice = state.buyedDishes.reduce((sum, { cost }) => sum += cost, 0);
             if (state.buyedDishes.length > 0) {
                 localStorage.setItem("shoppingCart", JSON.stringify(state.buyedDishes));
             } else if (localStorage.getItem("shoppingCart")) {
