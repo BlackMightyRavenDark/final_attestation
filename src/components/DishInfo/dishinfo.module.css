@@ -1,9 +1,12 @@
+.megawrapper {
+    min-width: 500px;
+    max-width: 1440px;
+}
+
 .dish-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 500px;
-    max-width: 1440px;
     margin: 40px 120px 0 120px;
 }
 
